@@ -1,19 +1,23 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import vrImageMobile from "../assets/images/image-interactive-mobile.jpg";
 import vrImageDesktop from "../assets/images/image-interactive-desktop.jpg";
+import vrImageMobile from "../assets/images/image-interactive-mobile.jpg";
 
 function VrSection() {
-  const desktopRef = useRef(null);
-  const mobileRef = useRef(null);
-  const mobileIsInView = useInView(mobileRef, { once: true });
-  const desktopIsInView = useInView(desktopRef, { once: true });
+  const ref = useRef(null);
+  const sectionIsInView = useInView(ref, {
+    once: true,
+    amount: "all",
+  });
 
   return (
-    <div className="relative mt-24 flex w-full flex-col justify-center overflow-hidden md:mt-40">
+    <div
+      ref={ref}
+      className="relative mt-24 flex w-full flex-col justify-center overflow-hidden md:mt-40 md:min-h-[500px]"
+    >
       <motion.img
         initial={{ opacity: 0 }}
-        animate={(mobileIsInView || desktopIsInView) && { opacity: 1 }}
+        animate={sectionIsInView && { opacity: 1 }}
         transition={{ duration: 1 }}
         src={vrImageMobile}
         alt="Wolverine with virtual reality goggles"
@@ -21,7 +25,7 @@ function VrSection() {
       />
       <motion.img
         initial={{ opacity: 0 }}
-        animate={(mobileIsInView || desktopIsInView) && { opacity: 1 }}
+        animate={sectionIsInView && { opacity: 1 }}
         transition={{ duration: 1 }}
         src={vrImageDesktop}
         alt="Wolverine with virtual reality goggles"
@@ -29,7 +33,7 @@ function VrSection() {
       />
       <motion.div
         initial={{ x: "100vw", opacity: 0 }}
-        animate={(mobileIsInView || desktopIsInView) && { x: 0, opacity: 1 }}
+        animate={sectionIsInView && { x: 0, opacity: 1 }}
         transition={{
           type: "spring",
           bounce: 0.2,
@@ -50,8 +54,6 @@ function VrSection() {
           experiences that bind to their brand.
         </p>
       </motion.div>
-      <div ref={desktopRef} className="hidden md:block" />
-      <div ref={mobileRef} className="md:hidden" />
     </div>
   );
 }
