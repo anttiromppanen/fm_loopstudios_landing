@@ -14,7 +14,7 @@ function VrSection() {
       <motion.img
         initial={{ opacity: 0 }}
         animate={(mobileIsInView || desktopIsInView) && { opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
+        transition={{ duration: 1 }}
         src={vrImageMobile}
         alt="Wolverine with virtual reality goggles"
         className="md:hidden"
