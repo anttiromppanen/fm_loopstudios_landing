@@ -56,7 +56,7 @@ function CreationsSection() {
       <div className="mt-8 flex w-full justify-center md:hidden">
         <button
           type="button"
-          className="border-2 border-userVeryDarkGray px-10 py-2 tracking-[0.3em]"
+          className="border-2 border-userVeryDarkGray px-10 py-2 tracking-[0.3em] active:bg-black active:text-white"
         >
           SEE ALL
         </button>
